@@ -8,11 +8,11 @@
     "description": "Web UI / API basic-auth username."
   },
   "KOPIA_PASSWORD": {
-    "value": "",
-    "description": "Repository encryption password. Generated once on first deploy — do not change after data exists."
+    "value": "${{secret(32)}}",
+    "description": "Repository encryption password. Auto-generated per deployment — do not change after data exists."
   },
   "KOPIA_SERVER_PASSWORD": {
-    "value": "",
+    "value": "${{secret(32)}}",
     "description": "Web UI / API basic-auth password. Set on deploy."
   }
 }

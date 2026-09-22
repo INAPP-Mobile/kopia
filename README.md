@@ -45,10 +45,20 @@ On first deploy, the entrypoint creates the filesystem repository automatically.
 
 | Variable | Description |
 |----------|-------------|
-| `KOPIA_PASSWORD` | Repository password (encrypts the backup repository). Generated once on first deploy. |
-| `KOPIA_SERVER_PASSWORD` | Web UI / API basic-auth password. Generated on deploy. |
+| `KOPIA_PASSWORD` | Repository encryption password. **Auto-generated** per deployment via `${{secret(32)}}`. NEVER CHANGE after data exists — changing it renders all existing backups unreadable. |
+| `KOPIA_SERVER_PASSWORD` | Web UI / API basic-auth password. **Auto-generated** per deployment via `${{secret(32)}}`. |
 | `KOPIA_SERVER_USERNAME` | Web UI / API basic-auth username (default `kopia`). |
 | `PORT` | HTTP listen port (default `51515`, matches Railway's routing). |
+
+### Retrieving your passwords
+
+Both passwords are auto-generated on first deploy. To view them:
+
+1. Open your service in the Railway dashboard
+2. Go to **Variables**
+3. The values of `KOPIA_PASSWORD` and `KOPIA_SERVER_PASSWORD` will be visible there
+
+**Important:** `KOPIA_PASSWORD` encrypts your backup repository. If you lose it, existing backups cannot be recovered. Consider exporting it to your own password manager.
 
 ### Connect a client
 
