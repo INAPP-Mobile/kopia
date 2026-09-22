@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- Kopia: shield + layered backup strata -->
+  <defs>
+    <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#1d4ed8"/>
+    </linearGradient>
+  </defs>
+  <!-- Shield body -->
+  <path d="M128 24 L216 56 V128 C216 176 178 214 128 232 C78 214 40 176 40 128 V56 Z"
+        fill="url(#shieldGrad)" stroke="#1e3a8a" stroke-width="6"/>
+  <!-- Layered strata (backup layers) -->
+  <rect x="84" y="104" width="88" height="18" rx="9" fill="#93c5fd"/>
+  <rect x="72" y="130" width="112" height="18" rx="9" fill="#bfdbfe"/>
+  <rect x="60" y="156" width="136" height="18" rx="9" fill="#dbeafe"/>
+  <!-- Center check dot -->
+  <circle cx="128" cy="78" r="14" fill="#fbbf24" stroke="#b45309" stroke-width="3"/>
+</svg>

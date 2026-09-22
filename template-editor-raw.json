@@ -1,0 +1,18 @@
+{
+  "PORT": {
+    "value": "51515",
+    "description": "HTTP listen port. Railway maps the public domain to this port (health check + basic auth)."
+  },
+  "KOPIA_SERVER_USERNAME": {
+    "value": "kopia",
+    "description": "Web UI / API basic-auth username."
+  },
+  "KOPIA_PASSWORD": {
+    "value": "",
+    "description": "Repository encryption password. Generated once on first deploy — do not change after data exists."
+  },
+  "KOPIA_SERVER_PASSWORD": {
+    "value": "",
+    "description": "Web UI / API basic-auth password. Set on deploy."
+  }
+}
