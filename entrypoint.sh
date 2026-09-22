@@ -14,6 +14,7 @@ if [ -z "$KOPIA_PASSWORD" ]; then
   exit 1
 fi
 
+# Ensure directories exist (volume may be root-owned)
 mkdir -p "$KOPIA_REPO_PATH" "$KOPIA_CACHE_DIRECTORY" "$KOPIA_LOG_DIR"
 
 # Create repository if it doesn't already exist (first deploy)
@@ -33,8 +34,6 @@ SERVER_USER="${KOPIA_SERVER_USERNAME:-kopia}"
 echo "Starting Kopia server on port ${PORT:-51515}..."
 
 # exec replaces the shell so kopia receives signals directly
-# Railway terminates TLS at the edge; container serves plain HTTP
-# gRPC is enabled (no --no-grpc) to support kopia backup clients
 exec kopia server start \
   --address=0.0.0.0:${PORT:-51515} \
   --server-username="$SERVER_USER" \
