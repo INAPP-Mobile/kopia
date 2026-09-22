@@ -14,7 +14,6 @@ if [ -z "$KOPIA_PASSWORD" ]; then
   exit 1
 fi
 
-# Ensure directories exist (volume may be root-owned)
 mkdir -p "$KOPIA_REPO_PATH" "$KOPIA_CACHE_DIRECTORY" "$KOPIA_LOG_DIR"
 
 # Create repository if it doesn't already exist (first deploy)
@@ -23,10 +22,6 @@ if [ ! -f "$KOPIA_REPO_PATH/kopia.repository.f" ]; then
   kopia repository create filesystem \
     --path "$KOPIA_REPO_PATH"
   echo "Repository created successfully."
-else
-  echo "Connecting to existing repository at $KOPIA_REPO_PATH..."
-  kopia repository connect filesystem \
-    --path "$KOPIA_REPO_PATH"
 fi
 
 SERVER_USER="${KOPIA_SERVER_USERNAME:-kopia}"
@@ -34,7 +29,9 @@ SERVER_USER="${KOPIA_SERVER_USERNAME:-kopia}"
 echo "Starting Kopia server on port ${PORT:-51515}..."
 
 # exec replaces the shell so kopia receives signals directly
+# Railway terminates TLS at the edge, so we run with --insecure
 exec kopia server start \
   --address=0.0.0.0:${PORT:-51515} \
+  --insecure \
   --server-username="$SERVER_USER" \
   --server-password="${KOPIA_SERVER_PASSWORD:-$KOPIA_PASSWORD}"
