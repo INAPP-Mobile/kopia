@@ -1,0 +1,25 @@
+{
+  "$schema": "https://railway.app/schema.json",
+  "name": "Kopia Repository Server",
+  "description": "Fast and secure open-source backup server with a web UI.",
+  "placeholderDefinitions": [],
+  "services": {
+    "kopia": {
+      "source": {
+        "image": "kopia/kopia:0.23.1"
+      },
+      "variables": {
+        "KOPIA_PASSWORD": "${{secret(32)}}",
+        "KOPIA_SERVER_PASSWORD": "${{secret(32)}}",
+        "KOPIA_SERVER_USERNAME": "kopia",
+        "PORT": "51515"
+      },
+      "volumes": [
+        {
+          "name": "kopia-data",
+          "mountPath": "/app"
+        }
+      ]
+    }
+  }
+}
