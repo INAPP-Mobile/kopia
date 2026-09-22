@@ -20,16 +20,12 @@ mkdir -p "$KOPIA_REPO_PATH" "$KOPIA_CACHE_DIRECTORY" "$KOPIA_LOG_DIR"
 if [ ! -f "$KOPIA_REPO_PATH/kopia.repository.f" ]; then
   echo "Initializing Kopia repository at $KOPIA_REPO_PATH..."
   kopia repository create filesystem \
-    --path "$KOPIA_REPO_PATH" \
-    --override-username=server \
-    --override-hostname=server
+    --path "$KOPIA_REPO_PATH"
   echo "Repository created successfully."
 else
   echo "Connecting to existing repository at $KOPIA_REPO_PATH..."
   kopia repository connect filesystem \
-    --path "$KOPIA_REPO_PATH" \
-    --override-username=server \
-    --override-hostname=server
+    --path "$KOPIA_REPO_PATH"
 fi
 
 SERVER_USER="${KOPIA_SERVER_USERNAME:-kopia}"
