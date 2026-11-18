@@ -105,4 +105,4 @@ Yes, twice: Railway terminates TLS at the edge, and Kopia's repository-level enc
 
 ### How do I restore a backup?
 
-From any connected client: `kopia snapshot list` then `kopia restore <snapshot-id> /restore/target`. Mounting is also supported: `kopia mount <snapshot-id> /mnt/restore`.
+From any connected client: `kopia snapshot list` then `kopia restore {snapshot-id} /restore/target`. Mounting is also supported: `kopia mount {snapshot-id} /mnt/restore`.
